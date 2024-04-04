@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Study Plan Creator</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script src="funtion.js"></script>
+
+</head>
+
+<body>
+    <h2>Study Plan Creator</h2>
+
+    <form id="studyPlanForm">
+        <div id="studyDurationSection">
+            <label for="studyDuration">Choose your study duration:</label>
+            <select id="studyDuration" name="studyDuration">
+                <option value="1day">1 Day</option>
+                <option value="1week">1 Week</option>
+                <option value="1month">1 Month</option>
+            </select><br><br>
+            <button type="button" onclick="showNext('studyTimeSection')">Next</button>
+
+        </div>
+
+        <div id="studyTimeSection" class="hidden">
+            <label for="startTime">Select Start Time:</label>
+            <select id="startTime" name="startTime" onchange="updateEndTimeOptions()">
+                <option value="6am">6am</option>
+                <option value="7am">7am</option>
+                <option value="8am">8am</option>
+                <option value="9am">9am</option>
+                <option value="10am">10am</option>
+                <option value="11am">11am</option>
+                <option value="12pm">12pm</option>
+                <option value="1pm">1pm</option>
+                <option value="2pm">2pm</option>
+                <option value="3pm">3pm</option>
+                <option value="4pm">4pm</option>
+                <option value="5pm">5pm</option>
+                <option value="6pm">6pm</option>
+                <option value="7pm">7pm</option>
+                <option value="8pm">8pm</option>
+                <option value="9pm">9pm</option>
+                <option value="10pm">10pm</option>
+            </select><br><br>
+
+            <label for="endTime">Select End Time:</label>
+            <select id="endTime" name="endTime">
+                <option value="7am">7am</option>
+                <option value="8am">8am</option>
+                <option value="9am">9am</option>
+                <option value="10am">10am</option>
+                <option value="11am">11am</option>
+                <option value="12pm">12pm</option>
+                <option value="1pm">1pm</option>
+                <option value="2pm">2pm</option>
+                <option value="3pm">3pm</option>
+                <option value="4pm">4pm</option>
+                <option value="5pm">5pm</option>
+                <option value="6pm">6pm</option>
+                <option value="7pm">7pm</option>
+                <option value="8pm">8pm</option>
+                <option value="9pm">9pm</option>
+                <option value="10pm">10pm</option>
+                <option value="11pm">11pm</option>
+            </select><br><br>
+            <button type="button" class="backBtn hidden" onclick="showPrevious('studyDurationSection')">Back</button>
+            <button type="button" onclick="showNext('subjectSection')">Next</button>
+        </div>
+
+
+
+        <div id="subjectSection" class="hidden">
+            <div id="subjectInputs"></div>
+            <button type="button" onclick="addSubject()">Add Subject</button>
+            <button type="button" class="backBtn hidden" onclick="showPrevious('studyDurationSection')">Back</button>
+            <button type="button" onclick="showNext('submitSection')">Next</button>
+
+        </div>
+
+        <div id="submitSection" class="hidden">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+</body>
+
+</html>
