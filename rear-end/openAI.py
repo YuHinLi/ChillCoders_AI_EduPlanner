@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # 将你的OpenAI API密钥替换到这里
-openai.api_key = ""
+openai.api_key = "AAAAB3NzaC1yc2EAAAADAQABAAACAQC3vYljzckZv/PHml9Ye37Ic2Fas7BYRAgw"
 
 # 简单的HTML表单模板
 HTML_TEMPLATE = """
@@ -58,6 +58,8 @@ def schedule_event():
         file_path = "event.ics"
         with open(file_path, "w") as file:
             file.write(ics_content)
+            print("Hi")
+
 
         return send_file(file_path, as_attachment=True, download_name='event.ics')
 
@@ -67,4 +69,5 @@ def schedule_event():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
