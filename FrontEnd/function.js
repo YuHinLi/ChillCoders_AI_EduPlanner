@@ -1,3 +1,6 @@
+var currentSectionId = '';
+
+
 function updateEndTimeOptions() {
     var startTime = document.getElementById('startTime').value;
     var endTime = document.getElementById('endTime');
@@ -19,25 +22,23 @@ function updateEndTimeOptions() {
 }
 
 function showNext(nextSectionId) {
-    var currentSection = document.getElementById(nextSectionId).previousElementSibling;
-    currentSection.classList.add('hidden');
+    currentSectionId = nextSectionId;
+    hideAllSections();
     document.getElementById(nextSectionId).classList.remove('hidden');
     manageBackButtonVisibility(nextSectionId);
 }
 
 function showPrevious(previousSectionId) {
-    var allSections = document.querySelectorAll('.section');
+    hideAllSections();
+    document.getElementById(previousSectionId).classList.remove('hidden');
+    manageBackButtonVisibility(previousSectionId);
+}
+
+function hideAllSections() {
+    var allSections = document.querySelectorAll('form > div');
     allSections.forEach(function(section) {
         section.classList.add('hidden');
     });
-
-    var previousSection = document.getElementById(previousSectionId);
-    previousSection.classList.remove('hidden');
-    manageBackButtonVisibility(previousSectionId);
-
-    if (previousSectionId === 'subjectSection') {
-        resetSubjectSection();
-    }
 }
 
 function manageBackButtonVisibility(currentSectionId) {
@@ -64,25 +65,48 @@ function addSubject() {
     var subjectIndex = document.querySelectorAll('.subject').length;
     var subjectDiv = document.createElement('div');
     subjectDiv.className = 'subject';
-    subjectDiv.innerHTML =
-        '<label>Subject Name:</label>' +
-        '<input type="text" name="subjectName[]"><br>' +
-        '<div class="tasks" id="tasks' + subjectIndex + '"></div>' +
-        '<button type="button" onclick="addTask(' + subjectIndex + ')">Add Task</button><br>';
+    subjectDiv.innerHTML = `
+        <label>Subject Name:</label>
+        <input type="text" name="subjectName[]"><br>
+        <div class="tasks" id="tasks${subjectIndex}">
+            <!-- Initial Task -->
+            <div>
+                <label>Task:</label>
+                <input type="text" name="subjectTask${subjectIndex}[]"><br>
+                <label>End Date for Task (optional):</label>
+                <input type="date" name="subjectTaskEndDate${subjectIndex}[]"><br>
+            </div>
+        </div>
+        <button type="button" onclick="addTask(${subjectIndex})">Add Task</button><br>`;
     document.getElementById('subjectInputs').appendChild(subjectDiv);
 }
 
 function addTask(subjectIndex) {
+    var tasksDiv = document.getElementById('tasks' + subjectIndex);
     var taskDiv = document.createElement('div');
-    taskDiv.innerHTML =
-        '<label>Task:</label>' +
-        '<input type="text" name="subjectTask' + subjectIndex + '[]"><br>' +
-        '<label>End Date for Task (optional):</label>' +
-        '<input type="date" name="subjectTaskEndDate' + subjectIndex + '[]"><br>';
-    document.getElementById('tasks' + subjectIndex).appendChild(taskDiv);
+    taskDiv.innerHTML = `
+        <label>Task:</label>
+        <input type="text" name="subjectTask${subjectIndex}[]"><br>
+        <label>End Date for Task (optional):</label>
+        <input type="date" name="subjectTaskEndDate${subjectIndex}[]"><br>`;
+    tasksDiv.appendChild(taskDiv);
 }
 
 document.getElementById('studyPlanForm').onsubmit = function(event) {
     event.preventDefault();
     alert('Form submitted. Implement AJAX or form submission logic here.');
 };
+
+function displayCalendarEvents(events) {
+    const eventsContainer = document.getElementById('calendarEvents');
+    events.forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.innerHTML = `
+            <h3>${event.summary}</h3>
+            <p>Start: ${event.start}</p>
+            <p>End: ${event.end}</p>
+            <p>Description: ${event.description}</p>
+        `;
+        eventsContainer.appendChild(eventElement);
+    });
+}
