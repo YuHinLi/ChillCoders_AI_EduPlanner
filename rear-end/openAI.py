@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # 将你的OpenAI API密钥替换到这里
-openai.api_key = "AAAAB3NzaC1yc2EAAAADAQABAAACAQC3vYljzckZv/PHml9Ye37Ic2Fas7BYRAgw"
+openai.api_key = ""
 
 # 简单的HTML表单模板
 HTML_TEMPLATE = """

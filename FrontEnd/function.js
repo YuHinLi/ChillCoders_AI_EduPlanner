@@ -96,17 +96,3 @@ document.getElementById('studyPlanForm').onsubmit = function(event) {
     event.preventDefault();
     alert('Form submitted. Implement AJAX or form submission logic here.');
 };
-
-function displayCalendarEvents(events) {
-    const eventsContainer = document.getElementById('calendarEvents');
-    events.forEach(event => {
-        const eventElement = document.createElement('div');
-        eventElement.innerHTML = `
-            <h3>${event.summary}</h3>
-            <p>Start: ${event.start}</p>
-            <p>End: ${event.end}</p>
-            <p>Description: ${event.description}</p>
-        `;
-        eventsContainer.appendChild(eventElement);
-    });
-}

@@ -3,25 +3,17 @@
 
 <head>
     <title>Calendar Display</title>
-    <link rel="stylesheet" href="calendarview.css">
+
+    <script src="calendar.js"></script>
+
 </head>
 
 <body>
+    <h1>Calendar Events</h1>
     <div id="calendarEvents"></div>
+
     <button onclick="window.location.href='index.html'">Back to Home</button>
 
-    <script>
-        const icsFileUrl = 'Backend/test.ics';
-
-        // Fetch and display the ICS as before
-        fetch(icsFileUrl)
-            .then(response => response.text())
-            .then(text => {
-                const events = parseICSText(text);
-                displayCalendarEvents(events);
-            })
-            .catch(error => console.error('Error:', error));
-    </script>
 </body>
 
 </html>
