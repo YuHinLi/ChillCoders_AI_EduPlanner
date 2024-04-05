@@ -1,3 +1,72 @@
+
+/* CSS Variables for easier color management */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #e74c3c;
+    --background-color: #f7f9fc;
+    --text-color: #2c3e50;
+    --button-hover-color: #2980b9;
+    --secondary-button-hover-color: #c0392b;
+    --background-gradient-start: #6a11cb;
+    --background-gradient-end: #2575fc;
+}
+
+/* Overall body styling with gradient background */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: var(--text-color);
+    background: linear-gradient(to right, var(--background-gradient-start), var(--background-gradient-end));
+    background-attachment: fixed;
+}
+
+/* Header styling with subtle text shadow for better contrast */
+h2 {
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Form styling to ensure readability over the new background */
+form {
+    background: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Updated button styling for better contrast and visual effect */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    background-image: linear-gradient(45deg, var(--primary-color), var(--button-hover-color));
+}
+
+button:hover {
+    background-image: linear-gradient(45deg, var(--button-hover-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Ensuring back buttons are easily distinguishable */
+.backBtn {
+    background-color: var(--secondary-color);
+}
+
+.backBtn:hover {
+    background-color: var(--secondary-button-hover-color);
+}
+
+/* Hidden class for toggling visibility */
 .hidden {
     display: none;
 }
