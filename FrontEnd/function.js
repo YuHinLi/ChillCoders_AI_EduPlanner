@@ -96,3 +96,26 @@ document.getElementById('studyPlanForm').onsubmit = function(event) {
     event.preventDefault();
     alert('Form submitted. Implement AJAX or form submission logic here.');
 };
+
+
+function submitFormAndRedirect() {
+    var form = document.getElementById('studyPlanForm');
+
+    fetch('your-server-endpoint', {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        .then(response => {
+            if (response.ok) {
+                // Proceed to redirect after successful server response
+                window.location.href = 'calendar_display.html';
+            } else {
+                throw new Error('Form submission failed');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+
+
+    // If no server interaction is needed, simply redirect
+    window.location.href = 'calendar_display.html';
+}
